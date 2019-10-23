@@ -8,12 +8,13 @@ namespace OS2_Projekt
 {
     class StringKeyBuilder
     {
-        public string BuildString(string text, byte[] key)
+        public string BuildString(Tuple<string, byte[]> key)
         {
-            int keyNumValue = BitConverter.ToInt32(key, 0);
+            int keyNumValue = BitConverter.ToInt32(key.Item2, 0);
             string keyTextValue = keyNumValue.ToString();
+            string label = key.Item1;
 
-            return text + ": " + keyTextValue;
+            return label + ": " + keyTextValue;
         }
     }
 }
