@@ -10,7 +10,7 @@ namespace OS2_Projekt
     {
         public string BuildString(Tuple<string, byte[]> key)
         {
-            int keyNumValue = BitConverter.ToInt32(key.Item2, 0);
+            int keyNumValue = BitConverter.ToInt16(key.Item2, 0);
             string keyTextValue = keyNumValue.ToString();
             string label = key.Item1;
 
