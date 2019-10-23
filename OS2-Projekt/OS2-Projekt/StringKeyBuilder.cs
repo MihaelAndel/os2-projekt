@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace OS2_Projekt
 {
     class StringKeyBuilder
     {
-        public string BuildString(string text, int key)
+        public string BuildString(string text, byte[] key)
         {
             return "TO DO";
         }
