@@ -55,12 +55,17 @@
     <Compile Include="Startup.Designer.cs">
       <DependentUpon>Startup.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyFileManager.cs" />
+    <Compile Include="FileManager.cs" />
     <Compile Include="IKeyGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RSAKeyGenerator.cs" />
     <Compile Include="StringKeyBuilder.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Startup.resx">
+      <DependentUpon>Startup.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
