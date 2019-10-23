@@ -14,9 +14,9 @@ namespace OS2_Projekt
         public List<Tuple<string, byte[]>> privateKey;
         public List<Tuple<string, byte[]>> publicKey;
 
-        public RSAKeyGenerator()
+        public RSAKeyGenerator(RSA rsa)
         {
-            keyProvider = RSA.Create();
+            keyProvider = rsa;
             keys = keyProvider.ExportParameters(true);
         }
 

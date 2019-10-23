@@ -12,9 +12,9 @@ namespace OS2_Projekt
         private Aes keyProvider;
         public List<Tuple<string, byte[]>> secretKey = null;
 
-        public AESKeyGenerator()
+        public AESKeyGenerator(Aes aes)
         {
-            keyProvider = Aes.Create();
+            keyProvider = aes;
         }
 
         public void GenerateKeys()
