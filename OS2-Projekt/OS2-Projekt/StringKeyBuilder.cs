@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,10 @@ namespace OS2_Projekt
     {
         public string BuildString(string text, byte[] key)
         {
-            return "TO DO";
+            int keyNumValue = BitConverter.ToInt32(key, 0);
+            string keyTextValue = keyNumValue.ToString();
+
+            return text + ": " + keyTextValue;
         }
     }
 }
