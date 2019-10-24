@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AESKeyGenerator.cs" />
+    <Compile Include="AESKeyProvider.cs" />
     <Compile Include="program.cs" />
+    <Compile Include="RSAKeyProvider.cs" />
     <Compile Include="Startup.cs">
       <SubType>Form</SubType>
     </Compile>

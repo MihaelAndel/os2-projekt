@@ -21,12 +21,9 @@ namespace OS2_Projekt
         }
 
         private void UIActionCreateKeyFiles_Click(object sender, EventArgs e)
-        {
-            RSA rsa = RSA.Create();
-            Aes aes = Aes.Create();
-
-            RSAKeyGenerator rsaGenerator = new RSAKeyGenerator(rsa);
-            AESKeyGenerator aesGenerator = new AESKeyGenerator(aes);
+        { 
+            RSAKeyGenerator rsaGenerator = new RSAKeyGenerator(RSAKeyProvider.ProvideKey());
+            AESKeyGenerator aesGenerator = new AESKeyGenerator(AESKeyProvider.ProvideKey());
 
             rsaGenerator.GenerateKeys();
             aesGenerator.GenerateKeys();
@@ -34,7 +31,6 @@ namespace OS2_Projekt
             FileManager.WriteKeyToFile("javni.txt", rsaGenerator.publicKey);
             FileManager.WriteKeyToFile("privatni.txt", rsaGenerator.privateKey);
             FileManager.WriteKeyToFile("tajni.txt", aesGenerator.secretKey);
-            
         }
     }
 }

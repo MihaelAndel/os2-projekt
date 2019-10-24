@@ -38,9 +38,9 @@
             this.UIActionCreateKeyFiles.FlatAppearance.BorderSize = 0;
             this.UIActionCreateKeyFiles.Location = new System.Drawing.Point(215, 154);
             this.UIActionCreateKeyFiles.Name = "UIActionCreateKeyFiles";
-            this.UIActionCreateKeyFiles.Size = new System.Drawing.Size(141, 62);
+            this.UIActionCreateKeyFiles.Size = new System.Drawing.Size(160, 62);
             this.UIActionCreateKeyFiles.TabIndex = 0;
-            this.UIActionCreateKeyFiles.Text = "Stvori datoteke s ključevima";
+            this.UIActionCreateKeyFiles.Text = "Stvori ključeve i datoteke s ključevima";
             this.UIActionCreateKeyFiles.UseVisualStyleBackColor = true;
             this.UIActionCreateKeyFiles.Click += new System.EventHandler(this.UIActionCreateKeyFiles_Click);
             // 

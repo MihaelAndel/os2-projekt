@@ -10,11 +10,10 @@ namespace OS2_Projekt
     {
         public string BuildString(Tuple<string, byte[]> key)
         {
-            int keyNumValue = BitConverter.ToInt16(key.Item2, 0);
-            string keyTextValue = keyNumValue.ToString();
+            string keyValue = Convert.ToBase64String(key.Item2);
             string label = key.Item1;
 
-            return label + ": " + keyTextValue;
+            return label + ": " + keyValue;
         }
     }
 }
