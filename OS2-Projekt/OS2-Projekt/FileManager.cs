@@ -13,16 +13,16 @@ namespace OS2_Projekt
 
         public static void WriteKeyToFile(string fileName, List<Tuple<string, byte[]>> keys)
         {
-            StringKeyBuilder stringBuilder = new StringKeyBuilder();
-            StreamWriter file = File.CreateText(RootPath + fileName);
-
-            foreach(var key in keys)
+            string fullPath = RootPath + fileName;
+            using (StreamWriter file = new StreamWriter(fullPath))
             {
-                file.WriteLine(stringBuilder.BuildString(key));
+                MyStringBuilder strBuilder = new MyStringBuilder();
+
+                foreach (var key in keys)
+                {
+                    file.WriteLine(strBuilder.BuildKeyString(key));
+                }
             }
-
-            file.Close();
-
-        }
+        }       
     }
 }
