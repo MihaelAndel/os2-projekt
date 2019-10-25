@@ -19,5 +19,11 @@ namespace OS2_Projekt
             }
             return key;
         }
+
+        public static Aes ProvideNewKey()
+        {
+            key = Aes.Create();
+            return key;
+        }
     }
 }

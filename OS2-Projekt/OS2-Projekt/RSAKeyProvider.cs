@@ -20,5 +20,11 @@ namespace OS2_Projekt
             return key;
         }
 
+        public static RSA ProvideNewKey()
+        {
+            key = RSA.Create();
+            return key;
+        }
+
     }
 }
