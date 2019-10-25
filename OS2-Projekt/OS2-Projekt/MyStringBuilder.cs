@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OS2_Projekt
 {
-    class StringKeyBuilder
+    class MyStringBuilder
     {
-        public string BuildString(Tuple<string, byte[]> key)
+        public string BuildKeyString(Tuple<string, byte[]> key)
         {
             string keyValue = Convert.ToBase64String(key.Item2);
             string label = key.Item1;
