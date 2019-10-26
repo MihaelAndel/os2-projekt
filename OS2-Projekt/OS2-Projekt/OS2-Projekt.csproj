@@ -49,6 +49,12 @@
   <ItemGroup>
     <Compile Include="AESKeyGenerator.cs" />
     <Compile Include="AESKeyProvider.cs" />
+    <Compile Include="EncryptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EncryptionDialog.Designer.cs">
+      <DependentUpon>EncryptionDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="program.cs" />
     <Compile Include="RSAKeyProvider.cs" />
     <Compile Include="Startup.cs">
@@ -65,6 +71,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EncryptionDialog.resx">
+      <DependentUpon>EncryptionDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Startup.resx">
       <DependentUpon>Startup.cs</DependentUpon>
     </EmbeddedResource>
