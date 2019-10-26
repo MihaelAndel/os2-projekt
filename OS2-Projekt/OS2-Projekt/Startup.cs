@@ -17,7 +17,7 @@ namespace OS2_Projekt
         public Startup()
         {
             InitializeComponent();
-            FileManager.RootPath = @"C:\Users\andel\Documents\Repozitoriji\os2-projekt\datoteke\";
+            FileManager.RootPath = @"C:\Repozitoriji\os2-projekt\datoteke\";
         }
 
         private void UIActionCreateKeyFiles_Click(object sender, EventArgs e)
@@ -35,7 +35,8 @@ namespace OS2_Projekt
 
         private void UIActionOpenEncryptionDialog_Click(object sender, EventArgs e)
         {
-           
+            EncryptionDialog encryptionDialog = new EncryptionDialog();
+            encryptionDialog.Show();
         }
     }
 }
