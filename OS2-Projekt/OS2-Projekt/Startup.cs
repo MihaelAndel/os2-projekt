@@ -32,5 +32,10 @@ namespace OS2_Projekt
             FileManager.WriteKeyToFile("privatni.txt", rsaGenerator.privateKey);
             FileManager.WriteKeyToFile("tajni.txt", aesGenerator.secretKey);
         }
+
+        private void UIActionOpenEncryptionDialog_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

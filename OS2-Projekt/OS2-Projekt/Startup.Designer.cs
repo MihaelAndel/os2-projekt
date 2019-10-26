@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.UIActionCreateKeyFiles = new System.Windows.Forms.Button();
+            this.UIActionOpenEncryptionDialog = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UIActionCreateKeyFiles
@@ -44,11 +45,22 @@
             this.UIActionCreateKeyFiles.UseVisualStyleBackColor = true;
             this.UIActionCreateKeyFiles.Click += new System.EventHandler(this.UIActionCreateKeyFiles_Click);
             // 
+            // UIActionOpenEncryptionDialog
+            // 
+            this.UIActionOpenEncryptionDialog.Location = new System.Drawing.Point(402, 154);
+            this.UIActionOpenEncryptionDialog.Name = "UIActionOpenEncryptionDialog";
+            this.UIActionOpenEncryptionDialog.Size = new System.Drawing.Size(178, 62);
+            this.UIActionOpenEncryptionDialog.TabIndex = 1;
+            this.UIActionOpenEncryptionDialog.Text = "Kriptiranje / dekriptiranje";
+            this.UIActionOpenEncryptionDialog.UseVisualStyleBackColor = true;
+            this.UIActionOpenEncryptionDialog.Click += new System.EventHandler(this.UIActionOpenEncryptionDialog_Click);
+            // 
             // Startup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.UIActionOpenEncryptionDialog);
             this.Controls.Add(this.UIActionCreateKeyFiles);
             this.Name = "Startup";
             this.Text = "Operacijski Sustavi 2 - Projekt - Mihael Anđel";
@@ -59,5 +71,6 @@
         #endregion
 
         private System.Windows.Forms.Button UIActionCreateKeyFiles;
+        private System.Windows.Forms.Button UIActionOpenEncryptionDialog;
     }
 }
