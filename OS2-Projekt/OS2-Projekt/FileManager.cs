@@ -54,9 +54,9 @@ namespace OS2_Projekt
             }
         }
 
-        public static string ReadTextFile(string pathToFile)
+        public static string ReadTextFile(string fullPath)
         {
-            return File.ReadAllText(pathToFile);
+            return File.ReadAllText(fullPath);
         }
     }
 }
