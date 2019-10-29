@@ -17,7 +17,7 @@ namespace OS2_Projekt
         public Startup()
         {
             InitializeComponent();
-            FileManager.RootPath = @"C:\Repozitoriji\os2-projekt\datoteke\";
+            FileManager.RootPath = @"C:\Users\andel\Documents\Repozitoriji\os2-projekt\datoteke\";
         }
 
         private void UIActionCreateKeyFiles_Click(object sender, EventArgs e)

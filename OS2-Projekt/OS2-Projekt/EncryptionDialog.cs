@@ -83,29 +83,20 @@ namespace OS2_Projekt
 
         private void UIActionAsymEncrypt_Click(object sender, EventArgs e)
         {
-            RSACryptoServiceProvider rsaKey = new RSACryptoServiceProvider(2048);
-
-            rsaKey.ImportParameters(RSAKeyProvider.ProvideKey().ExportParameters(true));
-
-            byte[] content = Encoding.UTF8.GetBytes(fileContent);
-            byte[] encryptedBytes = rsaKey.Encrypt(content, true);
-
-            string encryptedContent = Convert.ToBase64String(encryptedBytes);
+            RSAEncryptionService rsa = new RSAEncryptionService();
+            string encryptedContent = rsa.EncryptText(fileContent);
             FileManager.WriteTextToFile("asimetricna-enkripcija.txt", encryptedContent);
         }
 
         private void UIActionAsymDecrypt_Click(object sender, EventArgs e)
         {
-            RSACryptoServiceProvider rsaKey = new RSACryptoServiceProvider(2048);
-            rsaKey.ImportParameters(RSAKeyProvider.ProvideKey().ExportParameters(true));
+            RSAEncryptionService rsa = new RSAEncryptionService();
 
             string fullPath = FileManager.RootPath + "asimetricna-enkripcija.txt";
             string encryptedContent = FileManager.ReadTextFile(fullPath);
 
-            byte[] encryptedBytes = Convert.FromBase64String(encryptedContent);
-            byte[] decryptedBytes = rsaKey.Decrypt(encryptedBytes, true);
+            string decryptedContent = rsa.DecryptText(encryptedContent);
 
-            string decryptedContent = Encoding.UTF8.GetString(decryptedBytes);
             FileManager.WriteTextToFile("asimetricna-dekripcija.txt", decryptedContent);
 
         }
