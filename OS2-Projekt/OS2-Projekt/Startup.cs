@@ -17,7 +17,8 @@ namespace OS2_Projekt
         public Startup()
         {
             InitializeComponent();
-            FileManager.RootPath = @"C:\Repozitoriji\os2-projekt\datoteke\";
+            UIActionOpenEncryptionDialog.Enabled = false;
+            FileManager.RootPath = @"C:\Users\andel\Documents\Repozitoriji\os2-projekt\datoteke\";
         }
 
         private void UIActionCreateKeyFiles_Click(object sender, EventArgs e)
@@ -31,6 +32,8 @@ namespace OS2_Projekt
             FileManager.WriteKeyToFile("javni.txt", rsaGenerator.publicKey);
             FileManager.WriteKeyToFile("privatni.txt", rsaGenerator.privateKey);
             FileManager.WriteKeyToFile("tajni.txt", aesGenerator.secretKey);
+
+            UIActionOpenEncryptionDialog.Enabled = true;
         }
 
         private void UIActionOpenEncryptionDialog_Click(object sender, EventArgs e)

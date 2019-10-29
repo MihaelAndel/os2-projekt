@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="FileHasher.cs" />
     <Compile Include="program.cs" />
+    <Compile Include="RSAEncryptionService.cs" />
     <Compile Include="RSAKeyProvider.cs" />
     <Compile Include="Startup.cs">
       <SubType>Form</SubType>
