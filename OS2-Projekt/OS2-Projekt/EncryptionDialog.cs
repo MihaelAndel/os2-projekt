@@ -109,5 +109,12 @@ namespace OS2_Projekt
             FileManager.WriteTextToFile("asimetricna-dekripcija.txt", decryptedContent);
 
         }
+
+        private void UIActionHashFile_Click(object sender, EventArgs e)
+        {
+            FileHasher hasher = new FileHasher();
+            string hashedContent = hasher.HashFile(fileContent);
+            FileManager.WriteTextToFile("sazetak.txt", hashedContent);
+        }
     }
 }

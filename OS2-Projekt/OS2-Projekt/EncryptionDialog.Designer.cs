@@ -33,14 +33,15 @@
             this.UIActionSelectFile = new System.Windows.Forms.Button();
             this.UIActionSymDecrypt = new System.Windows.Forms.Button();
             this.UIActionAsymDecrypt = new System.Windows.Forms.Button();
+            this.UIActionHashFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UIActionSymEncrypt
             // 
-            this.UIActionSymEncrypt.Location = new System.Drawing.Point(37, 157);
-            this.UIActionSymEncrypt.Margin = new System.Windows.Forms.Padding(2);
+            this.UIActionSymEncrypt.Location = new System.Drawing.Point(49, 193);
+            this.UIActionSymEncrypt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UIActionSymEncrypt.Name = "UIActionSymEncrypt";
-            this.UIActionSymEncrypt.Size = new System.Drawing.Size(225, 41);
+            this.UIActionSymEncrypt.Size = new System.Drawing.Size(300, 50);
             this.UIActionSymEncrypt.TabIndex = 0;
             this.UIActionSymEncrypt.Text = "Simetrično kriptiranje datoteke";
             this.UIActionSymEncrypt.UseVisualStyleBackColor = true;
@@ -48,10 +49,10 @@
             // 
             // UIActionAsymEncrypt
             // 
-            this.UIActionAsymEncrypt.Location = new System.Drawing.Point(340, 157);
-            this.UIActionAsymEncrypt.Margin = new System.Windows.Forms.Padding(2);
+            this.UIActionAsymEncrypt.Location = new System.Drawing.Point(453, 193);
+            this.UIActionAsymEncrypt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UIActionAsymEncrypt.Name = "UIActionAsymEncrypt";
-            this.UIActionAsymEncrypt.Size = new System.Drawing.Size(225, 41);
+            this.UIActionAsymEncrypt.Size = new System.Drawing.Size(300, 50);
             this.UIActionAsymEncrypt.TabIndex = 1;
             this.UIActionAsymEncrypt.Text = "Asimetrično kriptiranje datoteke";
             this.UIActionAsymEncrypt.UseVisualStyleBackColor = true;
@@ -59,9 +60,10 @@
             // 
             // UIActionSelectFile
             // 
-            this.UIActionSelectFile.Location = new System.Drawing.Point(37, 63);
+            this.UIActionSelectFile.Location = new System.Drawing.Point(49, 78);
+            this.UIActionSelectFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UIActionSelectFile.Name = "UIActionSelectFile";
-            this.UIActionSelectFile.Size = new System.Drawing.Size(225, 41);
+            this.UIActionSelectFile.Size = new System.Drawing.Size(300, 50);
             this.UIActionSelectFile.TabIndex = 2;
             this.UIActionSelectFile.Text = "Odabir datoteke za kriptiranje";
             this.UIActionSelectFile.UseVisualStyleBackColor = true;
@@ -69,9 +71,10 @@
             // 
             // UIActionSymDecrypt
             // 
-            this.UIActionSymDecrypt.Location = new System.Drawing.Point(37, 203);
+            this.UIActionSymDecrypt.Location = new System.Drawing.Point(49, 250);
+            this.UIActionSymDecrypt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UIActionSymDecrypt.Name = "UIActionSymDecrypt";
-            this.UIActionSymDecrypt.Size = new System.Drawing.Size(225, 41);
+            this.UIActionSymDecrypt.Size = new System.Drawing.Size(300, 50);
             this.UIActionSymDecrypt.TabIndex = 3;
             this.UIActionSymDecrypt.Text = "Simetrično dekriptiranje";
             this.UIActionSymDecrypt.UseVisualStyleBackColor = true;
@@ -79,25 +82,37 @@
             // 
             // UIActionAsymDecrypt
             // 
-            this.UIActionAsymDecrypt.Location = new System.Drawing.Point(340, 203);
+            this.UIActionAsymDecrypt.Location = new System.Drawing.Point(453, 250);
+            this.UIActionAsymDecrypt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UIActionAsymDecrypt.Name = "UIActionAsymDecrypt";
-            this.UIActionAsymDecrypt.Size = new System.Drawing.Size(225, 41);
+            this.UIActionAsymDecrypt.Size = new System.Drawing.Size(300, 50);
             this.UIActionAsymDecrypt.TabIndex = 4;
             this.UIActionAsymDecrypt.Text = "Asimetrično dekriptiranje";
             this.UIActionAsymDecrypt.UseVisualStyleBackColor = true;
             this.UIActionAsymDecrypt.Click += new System.EventHandler(this.UIActionAsymDecrypt_Click);
             // 
+            // UIActionHashFile
+            // 
+            this.UIActionHashFile.Location = new System.Drawing.Point(49, 327);
+            this.UIActionHashFile.Name = "UIActionHashFile";
+            this.UIActionHashFile.Size = new System.Drawing.Size(300, 50);
+            this.UIActionHashFile.TabIndex = 5;
+            this.UIActionHashFile.Text = "Kreiranje sažetka datoteke";
+            this.UIActionHashFile.UseVisualStyleBackColor = true;
+            this.UIActionHashFile.Click += new System.EventHandler(this.UIActionHashFile_Click);
+            // 
             // EncryptionDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.UIActionHashFile);
             this.Controls.Add(this.UIActionAsymDecrypt);
             this.Controls.Add(this.UIActionSymDecrypt);
             this.Controls.Add(this.UIActionSelectFile);
             this.Controls.Add(this.UIActionAsymEncrypt);
             this.Controls.Add(this.UIActionSymEncrypt);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "EncryptionDialog";
             this.Text = "EncryptionDialog";
             this.ResumeLayout(false);
@@ -111,5 +126,6 @@
         private System.Windows.Forms.Button UIActionSelectFile;
         private System.Windows.Forms.Button UIActionSymDecrypt;
         private System.Windows.Forms.Button UIActionAsymDecrypt;
+        private System.Windows.Forms.Button UIActionHashFile;
     }
 }

@@ -55,6 +55,7 @@
     <Compile Include="EncryptionDialog.Designer.cs">
       <DependentUpon>EncryptionDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileHasher.cs" />
     <Compile Include="program.cs" />
     <Compile Include="RSAKeyProvider.cs" />
     <Compile Include="Startup.cs">
