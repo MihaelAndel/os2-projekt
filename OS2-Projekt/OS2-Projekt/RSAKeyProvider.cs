@@ -9,21 +9,30 @@ namespace OS2_Projekt
 {
     static class RSAKeyProvider
     {
-        private static RSA key = null;
+        private static RSACryptoServiceProvider key = null;
+        private static RSAParameters parameters;
 
-        public static RSA ProvideKey()
+        public static RSACryptoServiceProvider ProvideKey()
         {
             if (key == null)
             {
-                key = RSA.Create(4096);
+                key = new RSACryptoServiceProvider(4096);
+                parameters = key.ExportParameters(true);
             }
             return key;
         }
 
         public static RSA ProvideNewKey()
         {
-            key = RSA.Create(4096);
+            key = new RSACryptoServiceProvider(4096);
             return key;
+        }
+
+        public static void ImportParams(RSAParameters newParams)
+        {
+            parameters.D = newParams.D;
+            parameters.Modulus = newParams.Modulus;
+            key.ImportParameters(parameters);
         }
 
     }

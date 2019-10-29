@@ -14,8 +14,13 @@ namespace OS2_Projekt
         
         public RSAEncryptionService()
         {
-            rsaKey = new RSACryptoServiceProvider();
-            rsaKey.ImportParameters(RSAKeyProvider.ProvideKey().ExportParameters(true));
+            string fullPathPrivate = FileManager.RootPath + "privatni_kljuc.txt";
+            string fullPathPublic = FileManager.RootPath + "javni_kljuc.txt";
+            RSAParameters parameters = new RSAParameters();
+            parameters.D = Convert.FromBase64String(FileManager.ReadTextFile(fullPathPrivate));
+            parameters.Modulus = Convert.FromBase64String(FileManager.ReadTextFile(fullPathPublic));
+            RSAKeyProvider.ImportParams(parameters);
+            rsaKey = RSAKeyProvider.ProvideKey();
         }
 
         public string EncryptText(string text)

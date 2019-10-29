@@ -24,10 +24,14 @@ namespace OS2_Projekt
 
         private void UIActionSymEncrypt_Click(object sender, EventArgs e)
         {
+            string fullPath = FileManager.RootPath + "tajni_kljuc.txt";
+            string[] aes = FileManager.ReadTextFile(fullPath).Split(' ');
+            byte[] key = Convert.FromBase64String(aes[0]);
+            byte[] iv = Convert.FromBase64String(aes[1]);
             string encryptedContent = "";
 
             Aes aesKey = AESKeyProvider.ProvideKey();
-            var encryptor = aesKey.CreateEncryptor(aesKey.Key, aesKey.IV);
+            var encryptor = aesKey.CreateEncryptor(key, iv);
 
             using (MemoryStream msEncrypt = new MemoryStream())
             {
@@ -62,11 +66,14 @@ namespace OS2_Projekt
 
         private void UIActionSymDecrypt_Click(object sender, EventArgs e)
         {
+            string fullPath = FileManager.RootPath + "tajni_kljuc.txt";
+            string[] aes = FileManager.ReadTextFile(fullPath).Split(' ');
+            byte[] key = Convert.FromBase64String(aes[0]);
+            byte[] iv = Convert.FromBase64String(aes[1]);
             string decryptedContent = "";
             string encryptedContent = FileManager.ReadTextFile(FileManager.RootPath + "simetricna-enkripcija.txt");
-
             Aes aesKey = AESKeyProvider.ProvideKey();
-            var decryptor = aesKey.CreateDecryptor(aesKey.Key, aesKey.IV);
+            var decryptor = aesKey.CreateDecryptor(key, iv);
 
             using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(encryptedContent)))
             {

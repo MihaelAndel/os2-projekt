@@ -10,7 +10,7 @@ namespace OS2_Projekt
     class AESKeyGenerator : IKeyGenerator
     {
         private Aes keyProvider;
-        public List<Tuple<string, byte[]>> secretKey = null;
+        public string SecretKey;
 
         public AESKeyGenerator(Aes aes)
         {
@@ -19,14 +19,7 @@ namespace OS2_Projekt
 
         public void GenerateKeys()
         {
-            secretKey = GenerateSecretKey();
-        }
-
-        private List<Tuple<string, byte[]>> GenerateSecretKey()
-        {
-            List<Tuple<string, byte[]>> keys = new List<Tuple<string, byte[]>>();
-            keys.Add(Tuple.Create("Tajni AES ključ", keyProvider.Key));
-            return keys;
+            SecretKey = Convert.ToBase64String(keyProvider.Key) + ' ' + Convert.ToBase64String(keyProvider.IV);
         }
     }
 }

@@ -29,9 +29,9 @@ namespace OS2_Projekt
             rsaGenerator.GenerateKeys();
             aesGenerator.GenerateKeys();
 
-            FileManager.WriteKeyToFile("javni.txt", rsaGenerator.publicKey);
-            FileManager.WriteKeyToFile("privatni.txt", rsaGenerator.privateKey);
-            FileManager.WriteKeyToFile("tajni.txt", aesGenerator.secretKey);
+            FileManager.WriteTextToFile("javni_kljuc.txt", rsaGenerator.PublicKey);
+            FileManager.WriteTextToFile("privatni_kljuc.txt", rsaGenerator.PrivateKey);
+            FileManager.WriteTextToFile("tajni_kljuc.txt", aesGenerator.SecretKey);
 
             UIActionOpenEncryptionDialog.Enabled = true;
         }
