@@ -15,14 +15,14 @@ namespace OS2_Projekt
         {
             if (key == null)
             {
-                key = RSA.Create();
+                key = RSA.Create(4096);
             }
             return key;
         }
 
         public static RSA ProvideNewKey()
         {
-            key = RSA.Create();
+            key = RSA.Create(4096);
             return key;
         }
 
