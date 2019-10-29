@@ -107,5 +107,13 @@ namespace OS2_Projekt
             string hashedContent = hasher.HashFile(fileContent);
             FileManager.WriteTextToFile("sazetak.txt", hashedContent);
         }
+
+        private void UIActionCreateSignature_Click(object sender, EventArgs e)
+        { 
+            RSAEncryptionService rsa = new RSAEncryptionService();
+            string signedContent = rsa.SignData(fileContent);
+
+            FileManager.WriteTextToFile("potpis.txt", signedContent);
+        }
     }
 }

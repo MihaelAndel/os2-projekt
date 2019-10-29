@@ -35,5 +35,14 @@ namespace OS2_Projekt
             string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
             return decryptedText;
         }
+
+        public string SignData(string data)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(data);
+            byte[] signedBytes = rsaKey.SignData(bytes, new SHA512Managed());
+
+            string signedData = Convert.ToBase64String(signedBytes);
+            return signedData;
+        }
     }
 }
