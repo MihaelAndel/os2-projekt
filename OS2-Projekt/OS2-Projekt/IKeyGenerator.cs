@@ -8,7 +8,6 @@ namespace OS2_Projekt
 {
     interface IKeyGenerator
     {
-        List<int> GenerateKeys();
-        List<string> GenerateKeyStrings();
+        void GenerateKeys();
     }
 }
