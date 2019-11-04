@@ -35,6 +35,7 @@
             this.UIActionAsymDecrypt = new System.Windows.Forms.Button();
             this.UIActionHashFile = new System.Windows.Forms.Button();
             this.UIActionCreateSignature = new System.Windows.Forms.Button();
+            this.UIActionVerifySignature = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UIActionSymEncrypt
@@ -112,11 +113,22 @@
             this.UIActionCreateSignature.UseVisualStyleBackColor = true;
             this.UIActionCreateSignature.Click += new System.EventHandler(this.UIActionCreateSignature_Click);
             // 
+            // UIActionVerifySignature
+            // 
+            this.UIActionVerifySignature.Location = new System.Drawing.Point(538, 236);
+            this.UIActionVerifySignature.Name = "UIActionVerifySignature";
+            this.UIActionVerifySignature.Size = new System.Drawing.Size(200, 50);
+            this.UIActionVerifySignature.TabIndex = 7;
+            this.UIActionVerifySignature.Text = "Provjeri potpis";
+            this.UIActionVerifySignature.UseVisualStyleBackColor = true;
+            this.UIActionVerifySignature.Click += new System.EventHandler(this.UIActionVerifySignature_Click);
+            // 
             // EncryptionDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.UIActionVerifySignature);
             this.Controls.Add(this.UIActionCreateSignature);
             this.Controls.Add(this.UIActionHashFile);
             this.Controls.Add(this.UIActionAsymDecrypt);
@@ -140,5 +152,6 @@
         private System.Windows.Forms.Button UIActionAsymDecrypt;
         private System.Windows.Forms.Button UIActionHashFile;
         private System.Windows.Forms.Button UIActionCreateSignature;
+        private System.Windows.Forms.Button UIActionVerifySignature;
     }
 }

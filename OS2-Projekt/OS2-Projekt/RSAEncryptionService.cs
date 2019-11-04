@@ -49,5 +49,10 @@ namespace OS2_Projekt
             string signedData = Convert.ToBase64String(signedBytes);
             return signedData;
         }
+
+        public bool VerifySignature(byte[] signature, byte[] data)
+        { 
+            return rsaKey.VerifyData(signature, new SHA512Managed(), data);
+        }
     }
 }
