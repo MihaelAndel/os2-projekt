@@ -41,18 +41,23 @@ namespace OS2_Projekt
             return decryptedText;
         }
 
-        public string SignData(string data)
+        public byte[] SignData(string data)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(data);
-            byte[] signedBytes = rsaKey.SignData(bytes, new SHA512Managed());
 
-            string signedData = Convert.ToBase64String(signedBytes);
+            SHA512Managed sha = new SHA512Managed();
+            byte[] hashedBytes = sha.ComputeHash(bytes);
+
+            byte[] signedData = rsaKey.SignHash(hashedBytes, CryptoConfig.MapNameToOID("SHA512"));
+
             return signedData;
         }
 
-        public bool VerifySignature(byte[] signature, byte[] data)
-        { 
-            return rsaKey.VerifyData(signature, new SHA512Managed(), data);
+        public bool VerifySignature(byte[] data, byte[] signature)
+        {
+            SHA512Managed sha = new SHA512Managed();
+            byte[] hashedBytes = sha.ComputeHash(data);
+            return rsaKey.VerifyHash(hashedBytes, CryptoConfig.MapNameToOID("SHA512"), signature);
         }
     }
 }

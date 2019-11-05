@@ -16,6 +16,7 @@ namespace OS2_Projekt
     {
 
         private string pathToFile;
+        private byte[] signature;
 
         public EncryptionDialog()
         {
@@ -47,6 +48,8 @@ namespace OS2_Projekt
             }
 
             FileManager.WriteTextToFile("simetricna-enkripcija.txt", encryptedContent);
+
+            MessageBox.Show(encryptedContent);
         }
 
 
@@ -80,6 +83,7 @@ namespace OS2_Projekt
                 }
             }
             FileManager.WriteTextToFile("simetricna-dekripcija.txt", decryptedContent);
+            MessageBox.Show(decryptedContent);
         }
 
         private void UIActionAsymEncrypt_Click(object sender, EventArgs e)
@@ -88,6 +92,8 @@ namespace OS2_Projekt
             RSAEncryptionService rsa = new RSAEncryptionService();
             string encryptedContent = rsa.EncryptText(fileContent);
             FileManager.WriteTextToFile("asimetricna-enkripcija.txt", encryptedContent);
+
+            MessageBox.Show(encryptedContent);
         }
 
         private void UIActionAsymDecrypt_Click(object sender, EventArgs e)
@@ -101,6 +107,8 @@ namespace OS2_Projekt
 
             FileManager.WriteTextToFile("asimetricna-dekripcija.txt", decryptedContent);
 
+            MessageBox.Show(decryptedContent);
+
         }
 
         private void UIActionHashFile_Click(object sender, EventArgs e)
@@ -109,34 +117,35 @@ namespace OS2_Projekt
             FileHasher hasher = new FileHasher();
             string hashedContent = hasher.HashFile(fileContent);
             FileManager.WriteTextToFile("sazetak.txt", hashedContent);
+
+            MessageBox.Show(hashedContent);
         }
 
         private void UIActionCreateSignature_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(pathToFile);
             string fileContent = FileManager.ReadTextFile(pathToFile);
-            MessageBox.Show(fileContent);
             RSAEncryptionService rsa = new RSAEncryptionService();
-            string signedContent = rsa.SignData(fileContent);
-            MessageBox.Show(signedContent);
+            byte[] signedBytes = rsa.SignData(fileContent);
 
+            signature = signedBytes;
+
+            string signedContent = Convert.ToBase64String(signedBytes);
             FileManager.WriteTextToFile("potpis.txt", signedContent);
+
+            MessageBox.Show(signedContent);
         }
 
         private void UIActionVerifySignature_Click(object sender, EventArgs e)
         {
-            string pathToHash = FileManager.RootPath + "potpis.txt";
             string pathToData = pathToFile;
 
-            string signature = FileManager.ReadTextFile(pathToHash);
+            string data = FileManager.ReadTextFile(pathToData);
 
-            byte[] hash = Convert.FromBase64String(signature);
-            
-            byte[] data = Encoding.UTF8.GetBytes(FileManager.ReadTextFile(pathToData));
-            MessageBox.Show(Encoding.UTF8.GetString(data));
+            byte[] dataBytes = Encoding.UTF8.GetBytes(data);
+           
             RSAEncryptionService rsa = new RSAEncryptionService();
             
-            if(rsa.VerifySignature(hash, data) == true)
+            if(rsa.VerifySignature(dataBytes, signature) == true)
             {
                 MessageBox.Show("Potpis je valjan!");
             } else
