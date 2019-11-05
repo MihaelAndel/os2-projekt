@@ -15,7 +15,8 @@ namespace OS2_Projekt
     public partial class EncryptionDialog : Form
     {
 
-        private string fileContent;
+        private string pathToFile;
+        private byte[] signature;
 
         public EncryptionDialog()
         {
@@ -24,10 +25,15 @@ namespace OS2_Projekt
 
         private void UIActionSymEncrypt_Click(object sender, EventArgs e)
         {
+            string fileContent = FileManager.ReadTextFile(pathToFile);
+            string fullPath = FileManager.RootPath + "tajni_kljuc.txt";
+            string[] aes = FileManager.ReadTextFile(fullPath).Split(' ');
+            byte[] key = Convert.FromBase64String(aes[0]);
+            byte[] iv = Convert.FromBase64String(aes[1]);
             string encryptedContent = "";
 
             Aes aesKey = AESKeyProvider.ProvideKey();
-            var encryptor = aesKey.CreateEncryptor(aesKey.Key, aesKey.IV);
+            var encryptor = aesKey.CreateEncryptor(key, iv);
 
             using (MemoryStream msEncrypt = new MemoryStream())
             {
@@ -42,31 +48,29 @@ namespace OS2_Projekt
             }
 
             FileManager.WriteTextToFile("simetricna-enkripcija.txt", encryptedContent);
+
+            MessageBox.Show(encryptedContent);
         }
 
 
         private void UIActionSelectFile_Click(object sender, EventArgs e)
         {
-            string pathToFile = FileManager.OpenFile();
-            string content = FileManager.ReadTextFile(pathToFile);
+            string path = FileManager.OpenFile();
 
-            if (content.Length <= 0)
-            {
-                MessageBox.Show("Učitana datoteka nema sadržaja!");
-                return;
-            } else
-            {
-                fileContent = content;
-            }
+            pathToFile = path;
         }
+
 
         private void UIActionSymDecrypt_Click(object sender, EventArgs e)
         {
+            string fullPath = FileManager.RootPath + "tajni_kljuc.txt";
+            string[] aes = FileManager.ReadTextFile(fullPath).Split(' ');
+            byte[] key = Convert.FromBase64String(aes[0]);
+            byte[] iv = Convert.FromBase64String(aes[1]);
             string decryptedContent = "";
             string encryptedContent = FileManager.ReadTextFile(FileManager.RootPath + "simetricna-enkripcija.txt");
-
             Aes aesKey = AESKeyProvider.ProvideKey();
-            var decryptor = aesKey.CreateDecryptor(aesKey.Key, aesKey.IV);
+            var decryptor = aesKey.CreateDecryptor(key, iv);
 
             using (MemoryStream msDecrypt = new MemoryStream(Convert.FromBase64String(encryptedContent)))
             {
@@ -79,13 +83,17 @@ namespace OS2_Projekt
                 }
             }
             FileManager.WriteTextToFile("simetricna-dekripcija.txt", decryptedContent);
+            MessageBox.Show(decryptedContent);
         }
 
         private void UIActionAsymEncrypt_Click(object sender, EventArgs e)
         {
+            string fileContent = FileManager.ReadTextFile(pathToFile);
             RSAEncryptionService rsa = new RSAEncryptionService();
             string encryptedContent = rsa.EncryptText(fileContent);
             FileManager.WriteTextToFile("asimetricna-enkripcija.txt", encryptedContent);
+
+            MessageBox.Show(encryptedContent);
         }
 
         private void UIActionAsymDecrypt_Click(object sender, EventArgs e)
@@ -99,21 +107,52 @@ namespace OS2_Projekt
 
             FileManager.WriteTextToFile("asimetricna-dekripcija.txt", decryptedContent);
 
+            MessageBox.Show(decryptedContent);
+
         }
 
         private void UIActionHashFile_Click(object sender, EventArgs e)
         {
+            string fileContent = FileManager.ReadTextFile(pathToFile);
             FileHasher hasher = new FileHasher();
             string hashedContent = hasher.HashFile(fileContent);
             FileManager.WriteTextToFile("sazetak.txt", hashedContent);
+
+            MessageBox.Show(hashedContent);
         }
 
         private void UIActionCreateSignature_Click(object sender, EventArgs e)
-        { 
+        {
+            string fileContent = FileManager.ReadTextFile(pathToFile);
             RSAEncryptionService rsa = new RSAEncryptionService();
-            string signedContent = rsa.SignData(fileContent);
+            byte[] signedBytes = rsa.SignData(fileContent);
 
+            signature = signedBytes;
+
+            string signedContent = Convert.ToBase64String(signedBytes);
             FileManager.WriteTextToFile("potpis.txt", signedContent);
+
+            MessageBox.Show(signedContent);
+        }
+
+        private void UIActionVerifySignature_Click(object sender, EventArgs e)
+        {
+            string pathToData = pathToFile;
+
+            string data = FileManager.ReadTextFile(pathToData);
+
+            byte[] dataBytes = Encoding.UTF8.GetBytes(data);
+           
+            RSAEncryptionService rsa = new RSAEncryptionService();
+            
+            if(rsa.VerifySignature(dataBytes, signature) == true)
+            {
+                MessageBox.Show("Potpis je valjan!");
+            } else
+            {
+                MessageBox.Show("Potpis nije valjan!");
+            }
+
         }
     }
 }

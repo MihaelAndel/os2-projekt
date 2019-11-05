@@ -48,7 +48,7 @@ namespace OS2_Projekt
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
+                { 
                     return openFileDialog.FileName;
                 } else return "";
             }

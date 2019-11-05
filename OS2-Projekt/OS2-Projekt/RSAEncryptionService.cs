@@ -14,8 +14,13 @@ namespace OS2_Projekt
         
         public RSAEncryptionService()
         {
-            rsaKey = new RSACryptoServiceProvider();
-            rsaKey.ImportParameters(RSAKeyProvider.ProvideKey().ExportParameters(true));
+            string fullPathPrivate = FileManager.RootPath + "privatni_kljuc.txt";
+            string fullPathPublic = FileManager.RootPath + "javni_kljuc.txt";
+            RSAParameters parameters = new RSAParameters();
+            parameters.D = Convert.FromBase64String(FileManager.ReadTextFile(fullPathPrivate));
+            parameters.Modulus = Convert.FromBase64String(FileManager.ReadTextFile(fullPathPublic));
+            RSAKeyProvider.ImportParams(parameters);
+            rsaKey = RSAKeyProvider.ProvideKey();
         }
 
         public string EncryptText(string text)
@@ -36,13 +41,23 @@ namespace OS2_Projekt
             return decryptedText;
         }
 
-        public string SignData(string data)
+        public byte[] SignData(string data)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(data);
-            byte[] signedBytes = rsaKey.SignData(bytes, new SHA512Managed());
 
-            string signedData = Convert.ToBase64String(signedBytes);
+            SHA512Managed sha = new SHA512Managed();
+            byte[] hashedBytes = sha.ComputeHash(bytes);
+
+            byte[] signedData = rsaKey.SignHash(hashedBytes, CryptoConfig.MapNameToOID("SHA512"));
+
             return signedData;
+        }
+
+        public bool VerifySignature(byte[] data, byte[] signature)
+        {
+            SHA512Managed sha = new SHA512Managed();
+            byte[] hashedBytes = sha.ComputeHash(data);
+            return rsaKey.VerifyHash(hashedBytes, CryptoConfig.MapNameToOID("SHA512"), signature);
         }
     }
 }
