@@ -13,6 +13,8 @@ namespace OS2_Projekt
             string keyValue = Convert.ToBase64String(key.Item2);
             string label = key.Item1;
 
+            //TODO komentar
+
             return label + ": " + keyValue;
         }
     }
